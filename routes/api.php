@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\AbsenController;
+use App\Http\Controllers\Api\MahasiswaController;
+use App\Http\Controllers\Api\MatakuliahController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('', [AbsenController::class, 'index']);
+Route::get('/absen/{id}', [AbsenController::class, 'show']);
+route::put('/update/{id}', [AbsenController::class, 'update']);
+route::delete('/destroy/{id}', [AbsenController::class, 'destroy']);
+Route::resources([
+    'absen'=>AbsenController::class,
+    'mahasiswa'=>MahasiswaController::class,
+    'matakuliah'=>MatakuliahController::class,
+    ]);
+
